@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<!--
+==================================================================
+Prime Space
+==================================================================
+Zushah (@Zushah)
+==================================================================
+02/11/2022
+==================================================================
+-->
+<html> 
+    <head>
+        <title>Prime Space</title> 
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="mycanvas"></canvas>
+    </body>
+    <script src="https://cdn.jsdelivr.net/processing.js/1.4.8/processing.min.js"></script> 
+    <script>
+        var programCode = function(processingInstance) {
+            with (processingInstance) {
+            size(1600, 800); 
+            frameRate(50);
+            
+            var n = 1;
+            var scalebutitsredefined = 0.005; // <-- This value is fun to play around with
+            Number.prototype.butisitprime = function() {
+                var n = +this;
+                if(n <= 1) {
+                    return false;
+                } else if(n === 2) {
+                    return true;
+                }
+                for(var i = 2; i < Math.sqrt(n); i++) {
+                    if (n % i === 0) {
+                        return false;
+                    }
+                }
+                return true;
+            };
+            var clr = [
+                color(255),
+                color(232, 111, 111),
+                color(230, 160, 89),
+                color(230, 206, 120),
+                color(255),
+                color(118, 182, 222),
+                color(113, 121, 227),
+                color(129, 227, 225),
+                color(255)
+            ];
+            var colorpicked;
+            var twinkle;
+            var time = 0;
+            var rot = 0;
+            var PrimeSpace = function() {
+                angleMode = "radians";
+                twinkle = round(random(2.5));
+                strokeWeight(twinkle);
+                colorpicked = round(random(10));
+                stroke(clr[colorpicked]);
+                for(var i = 0; i < 101 - scalebutitsredefined * 500; i++) {
+                    var x = 800 + scalebutitsredefined * n * Math.cos(n);
+                    var y = 400 + scalebutitsredefined * n * Math.sin(n);
+                    if(n.butisitprime()) {
+                        point(x, y);
+                    }
+                    n++;
+                }
+            };
+            var PrimeSpaceImg;
+            
+            background(0);
+            draw = function() {
+                frameRate(50);
+                time++;
+                //background(0);
+                PrimeSpace();
+                
+                if(time === 750) {
+                    PrimeSpaceImg = get(0, 0, 1600, 800);
+                }
+                if(time > 750) {
+                    background(0);
+                    pushMatrix();
+                    translate(800, 400);
+                    rotate(rot);
+                    imageMode(CENTER);
+                    image(PrimeSpaceImg, 0, 0);
+                    imageMode(CORNER);
+                    popMatrix();
+                    rot -= 0.00048828125;
+                }
+            };
+        }};
+        
+        var canvas = document.getElementById("mycanvas"); 
+        var processingInstance = new Processing(canvas, programCode); 
+    </script>
+</html>

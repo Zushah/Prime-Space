@@ -1,6 +1,5 @@
 # prime-space
-A graphic depicting outer space using a beautifully modified polar prime spiral.
+A depiction of a galaxy using a polar prime spiral.
 
-See this program on Khan Academy <a href="https://www.khanacademy.org/computer-programming/prime-space/5438551371071488">here</a>.
-<br>
-Latest GitHub release can be found <a href="https://github.com/Zushah/prime-space/releases/tag/v1.2.1">here</a>.
+Khan Academy release can be found [here](https://www.khanacademy.org/computer-programming/prime-space/5438551371071488).\
+GitHub release can be found [here](https://github.com/Zushah/prime-space/releases/tag/v2.0.0).
